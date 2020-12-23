@@ -1,4 +1,14 @@
-# Load data
+################################################################################
+# Module Statistic analysis for Meiosis data
+#
+# (c) 2020 Kiewisz/Schwarz
+# This code is licensed under GPL V3.0 license (see LICENSE.txt for details)
+#
+# Author: Anna Schwarz
+# Created: 2020-12-23
+# Reviewed: Robert Kiewisz
+################################################################################
+
 rm(list = ls())
 
 source("Library.R")
