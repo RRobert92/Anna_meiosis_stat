@@ -11,10 +11,13 @@
 
 rm(list = ls())
 
-source("Library.R")
-source("Load_Data.R")
-source("Plot_Generator.R")
+# Import all necessary resources 
+source("Library.R") # Include all libraries
+source("Load_Data.R") # Include information which file to load
+source("Plot_Generator.R") # Include plot generation function
+source("Stat_Test.R") # Include Anova test function
 
+# Generate Violin plot of all data 
 P1 <- ggplot(anaI_1_A, aes("anaI-1_a", `Data`)) +
   geom_quasirandom(size = 1, color = "gray45") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) +
@@ -57,7 +60,7 @@ P1 <- Plot_generate(P1, anaII_1_A, "anaII-1_a", "purple3")
 P1 <- Plot_generate(P1, anaII_1_X, "anaII-1_x", "thistle")
 print(P1)
 
-# Statistic
+# Statistic analysis: data pre-processing
 ANOVA_Test <- rbind(
   data.frame(anaI_1_A[1], Name = "anaI_1_a"),
   data.frame(anaI_2_A[1], Name = "anaI_2_a"),
@@ -85,8 +88,7 @@ ANOVA_Test <- rbind(
   data.frame(anaII_1_X[1], Name = "anaII_1_x")
 )
 
-# Prepare input for Anova test
-source("Stat_Test.R")
+# Statistic analysis: collecting information for Anova test
 Anova_Results <- tibble()
 Names_List <- list("anaI_1_a", "anaI_2_a", 
                    "metaII_1_a", "metaII_1_x", "metaII_2_a", "metaII_2_x",
@@ -97,14 +99,15 @@ Names_List <- list("anaI_1_a", "anaI_2_a",
 Repetition <- as.numeric(length(Names_List) - 1)
 Counter <- 1
 
-# Count all Anova results 
+# Statistic analysis: Anova test for all data set
 for(i in 1:Repetition){
   k = 1
   j = 2
-  
+
  while (j <= length(Names_List)) {
    Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
    Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
+   
    Counter <- Counter + 1
    j <- j + 1
  }
