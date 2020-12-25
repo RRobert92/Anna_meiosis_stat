@@ -1,21 +1,21 @@
 ################################################################################
 # Module Statistic analysis for Meiosis data
 #
-# (c) 2020 Kiewisz/Schwarz
+# (c) 2020 Schwarz/Kiewisz
 # This code is licensed under GPL V3.0 license (see LICENSE.txt for details)
 #
-# Author: Anna Schwarz
+# Author: Anna Schwarz & Robert Kiewisz 
 # Created: 2020-12-23
-# Reviewed: Robert Kiewisz
 ################################################################################
 
 rm(list = ls())
 
 # Import all necessary resources 
-source("Library.R") # Include all libraries
-source("Load_Data.R") # Include information which file to load
-source("Plot_Generator.R") # Include plot generation function
-source("Stat_Test.R") # Include Anova test function
+source("bin/Library.R") # Include all libraries
+source("bin/Load_Meiosis.R") # Include information which file to load
+source("bin/Plot_Generator.R") # Include plot generation function
+source("bin/Stat_Test.R") # Include Anova test function
+source("bin/FWHM.R") # Gaussian fit and FWHM
 
 # Generate Violin plot of all data 
 P1 <- ggplot(anaI_1_A, aes("anaI-1_a", `Data`)) +
