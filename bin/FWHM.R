@@ -6,9 +6,18 @@
 #
 # Author: Robert Kiewisz
 # Created: 2020-12-25
+#
+# Usage example: FWHM(x, y, Output_ID)
+#
+# Where x - X axis data
+# Where y - Y axis data
+# Where Output_ID: 1 for FWHM coordinates
+#                  2 for peak distribution coordinates
+#                  3 for length of of FWHM
+#                  4 for Gaussian fit
 ################################################################################
 
-FWHM <- function(x, y, z) {
+FWHM <- function(x, y, Output_ID) {
   
   #Generate fitted line for given data
   Fit1000 <- round(as.numeric(lm(y ~ splines::ns(x, 1000))[["fitted.values"]]), 2)
@@ -44,24 +53,24 @@ FWHM <- function(x, y, z) {
   )
   
   # Output: Coordinates for peak
-  if (z == 1) {
+  if (Output_ID == 1) {
     names(Peak)[1] <- "X"
     names(Peak)[2] <- "Y"
     print(Peak)
   }
 
   # Output: Coordinates for FWHM
-  if (z == 2) {
+  if (Output_ID == 2) {
     print(df)
   }
 
   # Output: Length of of FWHM
-  if (z == 3) {
+  if (Output_ID == 3) {
     print(abs(as.numeric(df$X[1]) - as.numeric(df$X[2])))
   }
 
   # Output: Fit
-  if (z == 4) {
+  if (Output_ID == 4) {
     print(Fit1000)
   }
 }

@@ -6,6 +6,12 @@
 #
 # Author: Anna Schwarz & Robert Kiewisz 
 # Created: 2020-12-23
+#
+# Usage example: Anova_test(Data_ID, First_ID, Second_ID)
+#
+# Where Data_ID - Data name, given as data frame name
+# Where First_ID - First name of the column of a Data_ID 
+# Where Second_ID - Second name of the column of a Data_ID 
 ################################################################################
 
 Anova_test <- function(Data_ID, First_ID, Second_ID){
