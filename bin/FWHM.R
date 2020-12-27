@@ -19,58 +19,62 @@
 
 FWHM <- function(x, y, Output_ID) {
   
+  x <- as.numeric(as.matrix(x))
+  y <- as.numeric(as.matrix(y))
+  
   #Generate fitted line for given data
   Fit1000 <- round(as.numeric(lm(y ~ splines::ns(x, 1000))[["fitted.values"]]), 2)
-  bin <- as_tibble(cbind(Fit1000, x, y))
+  bin <- as.data.frame(cbind(Fit1000, x, y))
 
   # Calculate peak of the distribution
-  Peak <- tibble(
+  Peak <- data.frame(
     X = filter(bin, y == max(bin$Fit1000))["x"],
     Y = max(bin$Fit1000)
   )
 
   # Calculate Half distribution
   Half_max <- as.numeric(max(bin$Fit1000) / 2)
-  d <- as_tibble(as.numeric(y - Half_max))
-  bin <- as_tibble(cbind(bin, d))
-  
+  d <- as.data.frame(as.numeric(y - Half_max))
+  bin <- as.data.frame(cbind(bin, d))
+  names(bin)[4] <- "value"
   # Calculate FWHM
-  x1 <- tibble(
-    X = bin[which.min(abs(bin[1:which(bin$x == as.numeric(Peak$X)), ]$value)), ]["x"],
-    Y = bin[which.min(abs(bin[1:which(bin$x == as.numeric(Peak$X)), ]$value)), ]["y"]
+  x1 <- data.frame(
+    X = bin[which.min(abs(bin[1:which(bin$x == as.numeric(Peak$x)), ]$value)), ]["x"],
+    Y = bin[which.min(abs(bin[1:which(bin$x == as.numeric(Peak$x)), ]$value)), ]["y"]
   )
-  x2 <- tibble(
-    X = bin[as.numeric(which(bin$x == as.numeric(Peak$X)) + 
-                       which.min(abs(bin[which(bin$x == as.numeric(Peak$X)):nrow(bin), ]$value)) - 1), ]["x"],
-    Y = bin[as.numeric(which(bin$x == as.numeric(Peak$X)) + 
-                       which.min(abs(bin[which(bin$x == as.numeric(Peak$X)):nrow(bin), ]$value)) - 1), ]["y"]
+  x2 <- data.frame(
+    X = bin[as.numeric(which(bin$x == as.numeric(Peak$x)) + 
+                       which.min(abs(bin[which(bin$x == as.numeric(Peak$x)):nrow(bin), ]$value)) - 1), ]["x"],
+    Y = bin[as.numeric(which(bin$x == as.numeric(Peak$x)) + 
+                       which.min(abs(bin[which(bin$x == as.numeric(Peak$x)):nrow(bin), ]$value)) - 1), ]["y"]
   )
 
   # FWHM
-  df <- tibble(
-    X = c(x1$X, x2$X),
-    Y = c(x1$Y, x2$Y)
+  df <- data.frame(
+    X1 = x1$x,
+    X2 = x2$x,
+    Y = mean(as.numeric(x1$y), as.numeric(x2$y))
   )
   
   # Output: Coordinates for peak
   if (Output_ID == 1) {
     names(Peak)[1] <- "X"
     names(Peak)[2] <- "Y"
-    print(Peak)
+    return(Peak)
   }
 
   # Output: Coordinates for FWHM
   if (Output_ID == 2) {
-    print(df)
+    return(df)
   }
 
   # Output: Length of of FWHM
   if (Output_ID == 3) {
-    print(abs(as.numeric(df$X[1]) - as.numeric(df$X[2])))
+    return(abs(as.numeric(df$X1) - as.numeric(df$X2)))
   }
 
   # Output: Fit
   if (Output_ID == 4) {
-    print(Fit1000)
+    return(as.data.frame(Fit1000))
   }
 }
