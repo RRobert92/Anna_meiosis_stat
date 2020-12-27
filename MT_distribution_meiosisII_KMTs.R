@@ -13,7 +13,7 @@ rm(list = ls())
 # Import all necessary resources 
 source("bin/Library.R") # Include all libraries
 source("bin/Load_Meiosis.R") # Include information which file to load
-source("bin/Plot_Generator.R") # Include plot generation function
+source("bin/Plot_Generator_Quasirandom.R") # Include plot generation function
 source("bin/Stat_Test.R") # Include Anova test function
 source("bin/FWHM.R") # Gaussian fit and FWHM
 
