@@ -4,7 +4,7 @@
 # (c) 2020 Schwarz/Kiewisz
 # This code is licensed under GPL V3.0 license (see LICENSE.txt for details)
 #
-# Author: Anna Schwarz & Robert Kiewisz 
+# Author: Robert Kiewisz 
 # Created: 2020-12-23
 #
 # Usage example: Plot_generate(Plot_ID, Data_ID, ID, Color_ID)

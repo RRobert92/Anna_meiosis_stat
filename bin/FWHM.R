@@ -1,7 +1,7 @@
 ################################################################################
 # Module Gaussian fit
 #
-# (c) 2020 Kiewisz/Schwarz
+# (c) 2020 Schwarz/Kiewisz
 # This code is licensed under GPL V3.0 license (see LICENSE.txt for details)
 #
 # Author: Robert Kiewisz

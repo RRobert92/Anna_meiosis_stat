@@ -1,7 +1,7 @@
 ################################################################################
 # Module Analysis of FWHM for meiosis data
 #
-# (c) 2020 Schwarz/Kiewis
+# (c) 2020 Schwarz/Kiewisz
 # This code is licensed under GPL V3.0 license (see LICENSE.txt for details)
 #
 # Author: Anna Schwarz & Robert Kiewisz 
