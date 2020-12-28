@@ -16,5 +16,5 @@
 ################################################################################
 
 Plot_generate_line <- function(Plot_ID, Data_ID, ID_X, ID_Y, Color_ID) {
-  Plot_ID + geom_line(data = Data_ID, aes(ID_X, ID_Y), size = 1, color = Color_ID)
+  Plot_ID + geom_line(data = Data_ID, aes(ID_X, ID_Y), size = 0.5, color = Color_ID)
 }

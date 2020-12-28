@@ -55,7 +55,7 @@ for (i in 2:ncol(Data)) {
 }
 
 ## Plot Gaussian fitted data
-P1 <- ggplot(Gaussian_fit, aes(Slice, X)) + geom_line(color = "blue") + theme_classic()
+P1 <- ggplot(Gaussian_fit, aes(Slice, X)) + geom_line(color = "blue", size = 0.5) + theme_classic()
 P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A1, "red")
 P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$area, "yellow")
 print(P1)
