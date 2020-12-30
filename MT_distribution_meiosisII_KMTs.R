@@ -15,7 +15,6 @@ source("bin/Library.R") # Include all libraries
 source("bin/Load_Meiosis.R") # Include information which file to load
 source("bin/Plot_Generator_Quasirandom.R") # Include plot generation function
 source("bin/Stat_Test.R") # Include Anova test function
-source("bin/FWHM.R") # Gaussian fit and FWHM
 
 # Generate Violin plot of all data 
 P1 <- ggplot(anaI_1_A, aes("anaI-1_a", `Data`)) +

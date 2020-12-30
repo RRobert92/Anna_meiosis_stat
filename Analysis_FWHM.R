@@ -45,6 +45,7 @@ for (i in 2:ncol(Data)) {
   j = i - 1
   FWHM_Length[j,1] <- FWHM(Data[1], Data[i], 3)
 }
+names(FWHM_Length)[1] <- "Lenght_nm"
 
 ## FWHM length for each data
 Gaussian_fit <- tibble("slice/nm" = Data$`slice/nm`)
@@ -58,10 +59,11 @@ for (i in 2:ncol(Data)) {
 P1 <- ggplot(Gaussian_fit, aes(Slice, X)) + geom_line(color = "blue", size = 0.5) + theme_classic()
 P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A1, "red")
 P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$area, "yellow")
+P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$area, "yellow")
 print(P1)
 
 #Save output as .csv files
 write.csv(Peaks, file = "Gaussian_fit_Peaks.csv")
 write.csv(FWHM_Coord, file = "Gaussian_fit_FWHM_Coord.csv")
 write.csv(FWHM_Length, file = "Gaussian_fit_FWHM_Length.csv")
-write.csv(Gaussian_fit, file = "Gaussian_fit_FWHM_Coord.csv")
+write.csv(Gaussian_fit, file = "Gaussian_fit.csv")
