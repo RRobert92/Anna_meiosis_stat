@@ -12,7 +12,7 @@ rm(list = ls())
 
 # Import all necessary resources 
 source("bin/Library.R") # Include all libraries
-source("bin/Load_FWHM.R") # Include information which file to load
+source("bin/Load_FWHM_X.R") # Include information which file to load
 source("bin/FWHM.R") # Gaussian fit and FWHM
 source("bin/Plot_Generator_line.R") # Include plot generation function
 
@@ -55,20 +55,7 @@ for (i in 2:ncol(Data)) {
 }
 
 ## Plot Gaussian fitted data
-P1 <- ggplot(Gaussian_fit, aes(Slice, A1)) + geom_line(color = "cadetblue3", size = 0.5) + theme_classic()
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A2, "deepskyblue4")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A3, "royalblue1")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A4, "dodgerblue")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A5, "seagreen")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A6, "aquamarine1")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$A7, "lightblue3")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$B1, "cadetblue3")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$B2, "deepskyblue4")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$B3, "royalblue1")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$B4, "dodgerblue")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$B5, "seagreen")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$B6, "aquamarine1")
-P1 <- Plot_generate_line(P1, Gaussian_fit, Gaussian_fit$Slice, Gaussian_fit$B7, "lightblue3")
+P1 <- ggplot(Gaussian_fit, aes(Slice, X)) + geom_line(color = "red3", size = 0.5) + theme_classic()
 print(P1)
 
 #Save output as .csv files

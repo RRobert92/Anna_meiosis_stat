@@ -9,4 +9,4 @@
 ################################################################################
 
 # Load data
-Data <- read_excel("Data/chromosome_stretch_lagX5.xlsx")
+Data <- read_excel("Data/chromosome_stretch_lateanaII3.xlsx")
