@@ -304,3 +304,161 @@ assign(
 anaII_1_A <- data.frame(as.numeric(as.matrix(`anaII-1_a`[1:nrow(`anaII-1_a`), 1])))
 names(anaII_1_A)[1] <- "Data"
 rm(`anaII-1_a`)
+
+## Load SMTs for Meiosis II
+
+assign(
+  paste(MT_classification[1, 1]),
+  MT_classification[3:nrow(MT_classification), 2]
+)
+assign(
+  paste(MT_classification[1, 1]),
+  na.omit(get(paste(MT_classification[1, 1])))
+)
+anaI_1_S <- data.frame(as.numeric(as.matrix(`anaI-META_cell1`[1:nrow(`anaI-META_cell1`),1])))
+names(anaI_1_S)[1] <- "Data"
+rm(`anaI-META_cell1`)
+
+assign(
+  paste(MT_classification[1, 5]),
+  MT_classification[3:nrow(MT_classification), 6]
+)
+assign(
+  paste(MT_classification[1, 5]),
+  na.omit(get(paste(MT_classification[1, 5])))
+)
+anaI_2_S <- data.frame(as.numeric(as.matrix(`anaI-META_cell2`[1:nrow(`anaI-META_cell2`),1])))
+names(anaI_2_S)[1] <- "Data"
+rm(`anaI-META_cell2`)
+
+assign(
+  paste(MT_classification[1, 9]),
+  MT_classification[3:nrow(MT_classification), 11]
+)
+assign(
+  paste(MT_classification[1, 9]),
+  na.omit(get(paste(MT_classification[1, 9])))
+)
+metaII_1_S <- data.frame(as.numeric(as.matrix(`metaII-1`[1:nrow(`metaII-1`),1])))
+names(metaII_1_S)[1] <- "Data"
+rm(`metaII-1`)
+
+assign(
+  paste(MT_classification[1, 14]),
+  MT_classification[3:nrow(MT_classification), 16]
+)
+assign(
+  paste(MT_classification[1, 14]),
+  na.omit(get(paste(MT_classification[1, 14])))
+)
+metaII_2_S <- data.frame(as.numeric(as.matrix(`metaII-2`[1:nrow(`metaII-2`),1])))
+names(metaII_2_S)[1] <- "Data"
+rm(`metaII-2`)
+
+assign(
+  paste(MT_classification[1, 19]),
+  MT_classification[3:nrow(MT_classification), 21]
+)
+assign(
+  paste(MT_classification[1, 19]),
+  na.omit(get(paste(MT_classification[1, 19])))
+)
+lagX_6_S <- data.frame(as.numeric(as.matrix(`lagX-6`[1:nrow(`lagX-6`),1])))
+names(lagX_6_S)[1] <- "Data"
+rm(`lagX-6`)
+
+assign(
+  paste(MT_classification[1, 24]),
+  MT_classification[3:nrow(MT_classification), 26]
+)
+assign(
+  paste(MT_classification[1, 24]),
+  na.omit(get(paste(MT_classification[1, 24])))
+)
+lagX_S <- data.frame(as.numeric(as.matrix(`lagX`[1:nrow(`lagX`),1])))
+names(lagX_S)[1] <- "Data"
+rm(`lagX`)
+
+assign(
+  paste(MT_classification[1, 29]),
+  MT_classification[3:nrow(MT_classification), 31]
+)
+assign(
+  paste(MT_classification[1, 29]),
+  na.omit(get(paste(MT_classification[1, 29])))
+)
+lagX_9_S <- data.frame(as.numeric(as.matrix(`lagX-9`[1:nrow(`lagX-9`),1])))
+names(lagX_9_S)[1] <- "Data"
+rm(`lagX-9`)
+
+assign(
+  paste(MT_classification[1, 34]),
+  MT_classification[3:nrow(MT_classification), 36]
+)
+assign(
+  paste(MT_classification[1, 34]),
+  na.omit(get(paste(MT_classification[1, 34])))
+)
+lagX_5_S <- data.frame(as.numeric(as.matrix(`lagX-5`[1:nrow(`lagX-5`),1])))
+names(lagX_5_S)[1] <- "Data"
+rm(`lagX-5`)
+
+assign(
+  paste(MT_classification[1, 39]),
+  MT_classification[3:nrow(MT_classification), 41]
+)
+assign(
+  paste(MT_classification[1, 39]),
+  na.omit(get(paste(MT_classification[1, 39])))
+)
+anaII_15_S <- data.frame(as.numeric(as.matrix(`anaII-15`[1:nrow(`anaII-15`),1])))
+names(anaII_15_S)[1] <- "Data"
+rm(`anaII-15`)
+
+assign(
+  paste(MT_classification[1, 44]),
+  MT_classification[3:nrow(MT_classification), 46]
+)
+assign(
+  paste(MT_classification[1, 44]),
+  na.omit(get(paste(MT_classification[1, 44])))
+)
+lateanaII_2_S <- data.frame(as.numeric(as.matrix(`lateanaII-2`[1:nrow(`lateanaII-2`),1])))
+names(lateanaII_2_S)[1] <- "Data"
+rm(`lateanaII-2`)
+
+assign(
+  paste(MT_classification[1, 49]),
+  MT_classification[3:nrow(MT_classification), 51]
+)
+assign(
+  paste(MT_classification[1, 49]),
+  na.omit(get(paste(MT_classification[1, 49])))
+)
+lateanaII_3_S <- data.frame(as.numeric(as.matrix(`lateanaII-3`[1:nrow(`lateanaII-3`),1])))
+names(lateanaII_3_S)[1] <- "Data"
+rm(`lateanaII-3`)
+
+assign(
+  paste(MT_classification[1, 54]),
+  MT_classification[3:nrow(MT_classification), 56]
+)
+assign(
+  paste(MT_classification[1, 54]),
+  na.omit(get(paste(MT_classification[1, 54])))
+)
+lateanaII_1_S <- data.frame(as.numeric(as.matrix(`lateanaII-1`[1:nrow(`lateanaII-1`),1])))
+names(lateanaII_1_S)[1] <- "Data"
+rm(`lateanaII-1`)
+
+assign(
+  paste(MT_classification[1, 59]),
+  MT_classification[3:nrow(MT_classification), 61]
+)
+assign(
+  paste(MT_classification[1, 59]),
+  na.omit(get(paste(MT_classification[1, 59])))
+)
+anaII_1_S <- data.frame(as.numeric(as.matrix(`anaII-1`[1:nrow(`anaII-1`),1])))
+names(anaII_1_S)[1] <- "Data"
+rm(`anaII-1`)
