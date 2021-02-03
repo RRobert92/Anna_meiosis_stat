@@ -147,7 +147,7 @@ assign(
   na.omit(get(paste(curvature[1, 13])))
 )
 lagX6_C <- data.frame(as.numeric(as.matrix(`lagX6`[1:nrow(`lagX6`),1])))
-names(lagX6)[1] <- "Data"
+names(lagX6_C)[1] <- "Data"
 rm(`lagX6`)
 
 assign(
