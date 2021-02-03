@@ -19,10 +19,10 @@ source("bin/Stat_Test.R") # Include Anova test function
 # Generate Violin plot of all data 
 P1 <- ggplot(metaII1_E, aes("metaII1_e", `Data`)) +
   geom_quasirandom(size = 1, color = "red3") +
-  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
-P1 <- Plot_generate(P1, metaII1_L, "metaII2_l", "indianred1")
+P1 <- Plot_generate(P1, metaII1_L, "metaII1_l", "indianred1")
 
 P1 <- Plot_generate(P1, metaII2_E, "metaII2_e", "salmon")
 P1 <- Plot_generate(P1, metaII2_L, "metaII2_l", "bisque")
