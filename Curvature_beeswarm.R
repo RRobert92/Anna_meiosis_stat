@@ -13,26 +13,36 @@ rm(list = ls())
 # Import all necessary resources 
 source("bin/Library.R") # Include all libraries
 source("bin/Load_curvature.R") # Include information which file to load
-source("bin/Plot_Generator_BoxPlot.R") # Include plot generation function
+source("bin/Load_curvature_average.R") # Include information which file to load
+source("bin/Plot_Generator_Quasirandom.R") # Include plot generation function
 source("bin/Stat_Test.R") # Include Anova test function
 
-# Generate box plot of all data 
-P1 <- ggplot(metaI_C, aes("metaI_c", `Data`)) +
-      geom_boxplot(alpha = 0.2, fill = "gold1", outlier.size = 5) +
-      ylim (1, 2.45) +
-      theme_classic()
-P1 <- Plot_generate(P1, metaI5_C, "metaI5_c", "red3")
-P1 <- Plot_generate(P1, metaI7_C, "metaI7_c", "orange2")
-P1 <- Plot_generate(P1, anaI1_C, "anaI1_C", "purple3")
-P1 <- Plot_generate(P1, anaI3_C, "anaI3_C", "dodgerblue1")
-P1 <- Plot_generate(P1, anaI4_C, "anaI4_C", "darkgreen")
-P1 <- Plot_generate(P1, anaI7_C, "anaI7_C", "magenta2")
-print (P1)
+# Generate Violin plot of all data 
+P1 <- ggplot(metaI5_C, aes("metaI5_c", `Data`)) +
+  geom_quasirandom(size = 2, color = "red3") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0.5, 2.5) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
 
-P1 <- ggplot(metaI_C, aes("metaII2_c", `Data`)) +
-      geom_boxplot(alpha = 0.2, fill = "salmon", outlier.size =5) +
-      ylim (1, 2.45) +
-      theme_classic()
+P1 <- Plot_generate(P1, metaI7_C, "metaI7_c", "orange2")
+
+P1 <- Plot_generate(P1, metaI_C, "metaI_c", "gold1")
+
+P1 <- Plot_generate(P1, anaI4_C, "anaI4_c", "darkgreen")
+
+P1 <- Plot_generate(P1, anaI3_C, "anaI3_c", "dodgerblue1")
+
+P1 <- Plot_generate(P1, anaI7_C, "anaI7_c", "magenta2")
+
+P1 <- Plot_generate(P1, anaI1_C, "anaI1_c", "purple3")
+print(P1)
+
+
+P1 <- ggplot(metaII2_C, aes("metaII2_c", `Data`)) +
+  geom_quasirandom(size = 2, color = "salmon") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0.5, 2.5) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
 P1 <- Plot_generate(P1, metaII1_C, "metaII1_c", "red3")
 P1 <- Plot_generate(P1, lateanaII1_C, "lateanaII1_C", "magenta2")
 P1 <- Plot_generate(P1, lateanaII2_C, "lateanaII2_C", "dodgerblue1")
@@ -46,6 +56,25 @@ P1 <- Plot_generate(P1, lagX5_C, "lagX5_C", "chartreuse2")
 P1 <- Plot_generate(P1, lagX6_C, "lagX6_C", "orange2")
 P1 <- Plot_generate(P1, lagX9_C, "lagX9_C", "gold1")
 print(P1)
+
+# Generate Violin plot of average data 
+P1 <- ggplot(metaIall_C, aes("metaIall_c", `Data`)) +
+  geom_quasirandom(size = 2, color = "red3") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0.7, 2.5) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+
+P1 <- Plot_generate(P1, anaIall_C, "anaIall_c", "salmon")
+
+P1 <- Plot_generate(P1, metaIIall_C, "metaIIall_c", "darkgreen")
+
+P1 <- Plot_generate(P1, anaIIall_C, "anaIIall_c", "darkolivegreen2")
+
+P1 <- Plot_generate(P1, lateanaIIall_C, "lateanaIIall_c", "lightgoldenrod3")
+
+print(P1)
+
+
 
 # Statistic analysis: data pre-processing
 ANOVA_Test <- rbind(
@@ -68,7 +97,12 @@ ANOVA_Test <- rbind(
   data.frame(lagX_C[1], Name = "lagX_c"),
   data.frame(lagX5_C[1], Name = "lagX5_c"),
   data.frame(lagX6_C[1], Name = "lagX6_c"),
-  data.frame(lagX9_C[1], Name = "lagX9_c")
+  data.frame(lagX9_C[1], Name = "lagX9_c"),
+  data.frame(metaIall_C[1], Name = "metaIall_c"),
+  data.frame(anaIall_C[1], Name = "anaIall_c"),
+  data.frame(metaIIall_C[1], Name = "metaIIall_c"),
+  data.frame(anaIIall_C[1], Name = "anaIIall_c"),
+  data.frame(lateanaIIall_C[1], Name = "lateanaIIall_c")
    )
 
 # Statistic analysis: collecting information for Anova test
@@ -76,7 +110,8 @@ Anova_Results <- tibble()
 Names_List <- list("metaI_c", "metaI5_c", "metaI7_c", "metaII2_c", "metaII1_c", 
                    "lateanaII1_c", "lateanaII2_c", "lateanaII3_c", "ana_meta_1_c", "ana_meta_2_c",
                    "anaI1_c", "anaI3_c", "anaI4_c", "anaI7_c", "anaII1_c", "anaII15_c",
-                   "lagX_c",  "lagX5_c",  "lagX6_c",  "lagX9_c"
+                   "lagX_c",  "lagX5_c",  "lagX6_c",  "lagX9_c",
+                   "metaIall_c", "anaIall_c", "metaIIall_c", "anaIIall_c", "lateanaIIall_c"
                    )
 Repetition <- as.numeric(length(Names_List) - 1)
 Counter <- 1
@@ -98,16 +133,16 @@ for(i in 1:Repetition){
 
 i <- 1
 while (i <= nrow(Anova_Results)) {
-  if (Anova_Results[i, 1] >= 0.05) {
-    Anova_Results[i, 3] <- ". P >= 0.1"
+  if (Anova_Results[i, 1] > 0.05) {
+    Anova_Results[i, 3] <- "ns"
   } else if (Anova_Results[i, 1] >= 0.01 & Anova_Results[i, 1] < 0.05) {
     Anova_Results[i, 3] <- "* P >= 0.05"
   } else if (Anova_Results[i, 1] >= 0.001 & Anova_Results[i, 1] < 0.01) {
     Anova_Results[i, 3] <- "** P >= 0. 01"
-  } else if (Anova_Results[i, 1] >= 0.0001 & Anova_Results[i, 1] < 0.001) {
+  } else if (Anova_Results[i, 1] < 0.001) {
     Anova_Results[i, 3] <- "*** P >= 0.001"
   } else {
-    Anova_Results[i, 3] <- "ns"
+    Anova_Results[i, 3] <- "error"
   }
 
   if (i == nrow(Anova_Results)) {
@@ -119,4 +154,4 @@ while (i <= nrow(Anova_Results)) {
 }
 
 # Save file as csv
-write.csv(Anova_Results, file = "Anova_Results_curvature.csv")
+write.csv(Anova_Results, file = "Anova_Results_curvature_beeswarm.csv")

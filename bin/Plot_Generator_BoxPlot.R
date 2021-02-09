@@ -16,5 +16,5 @@
 ################################################################################
 
 Plot_generate <- function(Plot_ID, Data_ID, ID, Color_ID) {
-  Plot_ID + geom_boxplot(data = Data_ID, aes(ID, `Data`), fill = Color_ID, alpha = 0.2)
+  Plot_ID + geom_boxplot(data = Data_ID, aes(ID, `Data`), outlier.size = 5,  fill = Color_ID, alpha = 0.5)
 }
