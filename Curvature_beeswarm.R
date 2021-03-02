@@ -19,7 +19,7 @@ source("bin/Stat_Test.R") # Include Anova test function
 
 # Generate Violin plot of all data 
 P1 <- ggplot(metaI5_C, aes("metaI5_c", `Data`)) +
-  geom_quasirandom(size = 2, color = "red3") +
+  geom_quasirandom(size = 1.5, color = "red3") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0.5, 2.5) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -39,7 +39,7 @@ print(P1)
 
 
 P1 <- ggplot(metaII2_C, aes("metaII2_c", `Data`)) +
-  geom_quasirandom(size = 2, color = "salmon") +
+  geom_quasirandom(size = 1.5, color = "salmon") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0.5, 2.5) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -59,7 +59,7 @@ print(P1)
 
 # Generate Violin plot of average data 
 P1 <- ggplot(metaIall_C, aes("metaIall_c", `Data`)) +
-  geom_quasirandom(size = 2, color = "red3") +
+  geom_quasirandom(size = 1.5, color = "red3") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0.7, 2.5) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()

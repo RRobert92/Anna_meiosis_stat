@@ -20,7 +20,7 @@ source("bin/Stat_Test.R") # Include Anova test function
 
 # Generate Violin plot of all data 
 P1 <- ggplot(metaI5s, aes("metaI5_s", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray75") +
+  geom_quasirandom(size = 2, color = "gray75") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -31,7 +31,7 @@ P1 <- Plot_generate(P1, metaI5x_L, "metaI5x_l", "sandybrown")
 print(P1)
 
 P1 <- ggplot(metaI7s, aes("metaI7_s", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray75") +
+  geom_quasirandom(size = 2, color = "gray75") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -42,7 +42,7 @@ P1 <- Plot_generate(P1, metaI7x_L, "metaI7x_l", "sandybrown")
 print(P1)
 
 P1 <- ggplot(metaIs, aes("metaI_s", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray75") +
+  geom_quasirandom(size = 2, color = "gray75") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -53,7 +53,7 @@ P1 <- Plot_generate(P1, metaIx_L, "metaIx_l", "sandybrown")
 print(P1)
 
 P1 <- ggplot(anaI4s, aes("anaI4_s", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray75") +
+  geom_quasirandom(size = 2, color = "gray75") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -62,7 +62,7 @@ P1 <- Plot_generate(P1, anaI4a_L, "anaI4a_l", "lightgoldenrod")
 print(P1)
 
 P1 <- ggplot(anaI3s, aes("anaI3_s", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray75") +
+  geom_quasirandom(size = 2, color = "gray75") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -71,7 +71,7 @@ P1 <- Plot_generate(P1, anaI3a_L, "anaI3a_l", "lightgoldenrod")
 print(P1)
 
 P1 <- ggplot(anaI7s, aes("anaI7_s", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray75") +
+  geom_quasirandom(size = 2, color = "gray75") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -80,7 +80,7 @@ P1 <- Plot_generate(P1, anaI7a_L, "anaI7a_l", "lightgoldenrod")
 print(P1)
 
 P1 <- ggplot(anaI1s, aes("anaI1_s", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray75") +
+  geom_quasirandom(size = 2, color = "gray75") +
   stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
@@ -135,31 +135,31 @@ Counter <- 1
 for(i in 1:Repetition){
   k = 1
   j = 2
-
- while (j <= length(Names_List)) {
-   Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
-   Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
-   
-   Counter <- Counter + 1
-   j <- j + 1
- }
-    Names_List <- Names_List[-1]  
+  
+  while (j <= length(Names_List)) {
+    Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
+    Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
+    
+    Counter <- Counter + 1
+    j <- j + 1
+  }
+  Names_List <- Names_List[-1]  
 }
 
 i <- 1
 while (i <= nrow(Anova_Results)) {
-  if (Anova_Results[i, 1] >= 0.05) {
-    Anova_Results[i, 3] <- ". P >= 0.1"
+  if (Anova_Results[i, 1] > 0.05) {
+    Anova_Results[i, 3] <- "ns"
   } else if (Anova_Results[i, 1] >= 0.01 & Anova_Results[i, 1] < 0.05) {
     Anova_Results[i, 3] <- "* P >= 0.05"
   } else if (Anova_Results[i, 1] >= 0.001 & Anova_Results[i, 1] < 0.01) {
     Anova_Results[i, 3] <- "** P >= 0. 01"
-  } else if (Anova_Results[i, 1] >= 0.0001 & Anova_Results[i, 1] < 0.001) {
+  } else if (Anova_Results[i, 1] < 0.001) {
     Anova_Results[i, 3] <- "*** P >= 0.001"
   } else {
-    Anova_Results[i, 3] <- "ns"
+    Anova_Results[i, 3] <- "error"
   }
-
+  
   if (i == nrow(Anova_Results)) {
     names(Anova_Results)[1] <- "P value"
     names(Anova_Results)[2] <- "test"
@@ -167,6 +167,7 @@ while (i <= nrow(Anova_Results)) {
   }
   i <- i + 1
 }
+
 
 # Save file as csv
 write.csv(Anova_Results, file = "Anova_Results_MeiosisI_ALL.csv")

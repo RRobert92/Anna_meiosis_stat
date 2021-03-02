@@ -59,31 +59,31 @@ Counter <- 1
 for(i in 1:Repetition){
   k = 1
   j = 2
-
- while (j <= length(Names_List)) {
-   Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
-   Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
-   
-   Counter <- Counter + 1
-   j <- j + 1
- }
-    Names_List <- Names_List[-1]  
+  
+  while (j <= length(Names_List)) {
+    Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
+    Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
+    
+    Counter <- Counter + 1
+    j <- j + 1
+  }
+  Names_List <- Names_List[-1]  
 }
 
 i <- 1
 while (i <= nrow(Anova_Results)) {
-  if (Anova_Results[i, 1] >= 0.05) {
-    Anova_Results[i, 3] <- ". P >= 0.1"
+  if (Anova_Results[i, 1] > 0.05) {
+    Anova_Results[i, 3] <- "ns"
   } else if (Anova_Results[i, 1] >= 0.01 & Anova_Results[i, 1] < 0.05) {
     Anova_Results[i, 3] <- "* P >= 0.05"
   } else if (Anova_Results[i, 1] >= 0.001 & Anova_Results[i, 1] < 0.01) {
     Anova_Results[i, 3] <- "** P >= 0. 01"
-  } else if (Anova_Results[i, 1] >= 0.0001 & Anova_Results[i, 1] < 0.001) {
+  } else if (Anova_Results[i, 1] < 0.001) {
     Anova_Results[i, 3] <- "*** P >= 0.001"
   } else {
-    Anova_Results[i, 3] <- "ns"
+    Anova_Results[i, 3] <- "error"
   }
-
+  
   if (i == nrow(Anova_Results)) {
     names(Anova_Results)[1] <- "P value"
     names(Anova_Results)[2] <- "test"

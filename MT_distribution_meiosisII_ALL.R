@@ -12,90 +12,179 @@ rm(list = ls())
 
 # Import all necessary resources 
 source("bin/Library.R") # Include all libraries
-source("bin/Load_Meiosis.R") # Include information which file to load
 source("bin/Load_aMTs_MII.R") # Include information which file to load
-source("bin/Load_kMTs_X.R") # Include information which file to load
+source("bin/Load_sMTs_MII.R") # Include information which file to load
+source("bin/Load_xMTs_MII.R") # Include information which file to load
 source("bin/Plot_Generator_Quasirandom.R") # Include plot generation function
 source("bin/Stat_Test.R") # Include Anova test function
 
 # Generate Violin plot of all data 
-P1 <- ggplot(anaI_1_A, aes("anaI-1_a", `Data`)) +
-  geom_quasirandom(size = 1, color = "gray45") +
-  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) +
+P1 <- ggplot(metaII1_S, aes("metaII1_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
+P1 <- Plot_generate(P1, metaII1a_E, "metaII1a_e", "yellow3")
+P1 <- Plot_generate(P1, metaII1a_L, "metaII1a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, metaII1x_E, "metaII1x_e", "salmon4")
+P1 <- Plot_generate(P1, metaII1x_L, "metaII1x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, anaI_2_A, "anaI-2_a", "black")
+P1 <- ggplot(metaII2_S, aes("metaII2_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, metaII2a_E, "metaII2a_e", "yellow3")
+P1 <- Plot_generate(P1, metaII2a_L, "metaII2a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, metaII2x_E, "metaII2x_e", "salmon4")
+P1 <- Plot_generate(P1, metaII2x_L, "metaII2x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, metaII_1_A, "metaII-1_a", "red3")
-P1 <- Plot_generate(P1, metaII_1_X, "metaII-1_x", "indianred1")
+P1 <- ggplot(lagX6_S, aes("lagX6_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, lagX6a_E, "lagX6a_e", "yellow3")
+P1 <- Plot_generate(P1, lagX6a_L, "lagX6a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, lagX6x_E, "lagX6x_e", "salmon4")
+P1 <- Plot_generate(P1, lagX6x_L, "lagX6x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, metaII_2_A, "metaII-2_a", "salmon")
-P1 <- Plot_generate(P1, metaII_2_X, "metaII-2_x", "bisque")
+P1 <- ggplot(lagX_S, aes("lagX_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, lagXa_E, "lagXa_e", "yellow3")
+P1 <- Plot_generate(P1, lagXa_L, "lagXa_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, lagXx_E, "lagXx_e", "salmon4")
+P1 <- Plot_generate(P1, lagXx_L, "lagXx_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, lagX_6_A, "lagX-6_a", "orange2")
-P1 <- Plot_generate(P1, lagX_6_X, "lagX-6_x", "wheat1")
+P1 <- ggplot(lagX5_S, aes("lagX5_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, lagX5a_E, "lagX5a_e", "yellow3")
+P1 <- Plot_generate(P1, lagX5a_L, "lagX5a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, lagX5x_E, "lagX5x_e", "salmon4")
+P1 <- Plot_generate(P1, lagX5x_L, "lagX5x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, lagX_A, "lagX_a", "lightgoldenrod")
-P1 <- Plot_generate(P1, lagX_X, "lagX_x", "lightyellow2")
+P1 <- ggplot(anaII15_S, aes("anaII15_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, anaII15a_E, "anaII15a_e", "yellow3")
+P1 <- Plot_generate(P1, anaII15a_L, "anaII15a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, anaII15x_E, "anaII15x_e", "salmon4")
+P1 <- Plot_generate(P1, anaII15x_L, "anaII15x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, lagX_9_A, "lagX-9_a", "gold1")
-P1 <- Plot_generate(P1, lagX_9_X, "lagX-9_x", "khaki1")
+P1 <- ggplot(lateanaII2_S, aes("lateanaII2_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, lateanaII2a_E, "lateanaII2a_e", "yellow3")
+P1 <- Plot_generate(P1, lateanaII2a_L, "lateanaII2a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, lateanaII2x_E, "lateanaII2x_e", "salmon4")
+P1 <- Plot_generate(P1, lateanaII2x_L, "lateanaII2x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, lagX_5_A, "lagX-5_a", "chartreuse2")
-P1 <- Plot_generate(P1, lagX_5_X, "lagX-5_x", "darkolivegreen1")
+P1 <- ggplot(lateanaII3_S, aes("lateanaII3_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, lateanaII3a_E, "lateanaII3a_e", "yellow3")
+P1 <- Plot_generate(P1, lateanaII3a_L, "lateanaII3a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, lateanaII3x_E, "lateanaII3x_e", "salmon4")
+P1 <- Plot_generate(P1, lateanaII3x_L, "lateanaII3x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, anaII_15_A, "anaII-15_a", "darkgreen")
-P1 <- Plot_generate(P1, anaII_15_X, "anaII-15_x", "palegreen")
+P1 <- ggplot(lateanaII1_S, aes("lateanaII1_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, lateanaII1a_E, "lateanaII1a_e", "yellow3")
+P1 <- Plot_generate(P1, lateanaII1a_L, "lateanaII1a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, lateanaII1x_E, "lateanaII1x_e", "salmon4")
+P1 <- Plot_generate(P1, lateanaII1x_L, "lateanaII1x_l", "sandybrown")
+print (P1)
 
-P1 <- Plot_generate(P1, lateanaII_2_A, "lateanaII-2_a", "dodgerblue1")
-P1 <- Plot_generate(P1, lateanaII_2_X, "lateanaII-2_x", "skyblue1")
-
-P1 <- Plot_generate(P1, lateanaII_3_A, "lateanaII-3_a", "royalblue4")
-P1 <- Plot_generate(P1, lateanaII_3_X, "lateanaII-3_x", "slategray3")
-
-P1 <- Plot_generate(P1, lateanaII_1_A, "lateanaII-1_a", "magenta2")
-P1 <- Plot_generate(P1, lateanaII_1_X, "lateanaII-1_x", "pink")
-
-P1 <- Plot_generate(P1, anaII_1_A, "anaII-1_a", "purple3")
-P1 <- Plot_generate(P1, anaII_1_X, "anaII-1_x", "thistle")
-print(P1)
+P1 <- ggplot(anaII1_S, aes("anaII1_s", `Data`)) +
+  geom_quasirandom(size = 2, color = "gray75") +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
+  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
+  theme_classic()
+P1 <- Plot_generate(P1, anaII1a_E, "anaII1a_e", "yellow3")
+P1 <- Plot_generate(P1, anaII1a_L, "anaII1a_l", "lightgoldenrod")
+P1 <- Plot_generate(P1, anaII1x_E, "anaII1x_e", "salmon4")
+P1 <- Plot_generate(P1, anaII1x_L, "anaII1x_l", "sandybrown")
+print (P1)
 
 # Statistic analysis: data pre-processing
 ANOVA_Test <- rbind(
-  data.frame(anaI_1_A[1], Name = "anaI_1_a"),
-  data.frame(anaI_2_A[1], Name = "anaI_2_a"),
-  data.frame(metaII_1_A[1], Name = "metaII_1_a"),
-  data.frame(metaII_1_X[1], Name = "metaII_1_x"),
-  data.frame(metaII_2_A[1], Name = "metaII_2_a"),
-  data.frame(metaII_2_X[1], Name = "metaII_2_x"),
-  data.frame(lagX_6_A[1], Name = "lagX_6_a"),
-  data.frame(lagX_6_X[1], Name = "lagX_6_x"),
-  data.frame(lagX_A[1], Name = "lagX_a"),
-  data.frame(lagX_X[1], Name = "lagX_x"),
-  data.frame(lagX_9_A[1], Name = "lagX_9_a"),
-  data.frame(lagX_9_X[1], Name = "lagX_9_x"),
-  data.frame(lagX_5_A[1], Name = "lagX_5_a"),
-  data.frame(lagX_5_A[1], Name = "lagX_5_x"),
-  data.frame(anaII_15_A[1], Name = "anaII_15_a"),
-  data.frame(anaII_15_X[1], Name = "anaII_15_x"),
-  data.frame(lateanaII_2_A[1], Name = "lateanaII_2_a"),
-  data.frame(lateanaII_2_X[1], Name = "lateanaII_2_x"),
-  data.frame(lateanaII_3_A[1], Name = "lateanaII_3_a"),
-  data.frame(lateanaII_3_X[1], Name = "lateanaII_3_x"),
-  data.frame(lateanaII_1_A[1], Name = "lateanaII_1_a"),
-  data.frame(lateanaII_1_X[1], Name = "lateanaII_1_x"),
-  data.frame(anaII_1_A[1], Name = "anaII_1_a"),
-  data.frame(anaII_1_X[1], Name = "anaII_1_x")
+  data.frame(metaII1x_E[1], Name = "metaII1x_e"),
+  data.frame(metaII1x_L[1], Name = "metaII1x_l"),
+  data.frame(metaII1a_E[1], Name = "metaII1a_e"),
+  data.frame(metaII1a_L[1], Name = "metaII1a_l"),
+  data.frame(metaII2x_E[1], Name = "metaII2x_e"),
+  data.frame(metaII2x_L[1], Name = "metaII2x_l"),
+  data.frame(metaII2a_E[1], Name = "metaII2a_e"),
+  data.frame(metaII2a_L[1], Name = "metaII2a_l"),
+  data.frame(lagX6x_E[1], Name = "lagX6x_e"),
+  data.frame(lagX6x_L[1], Name = "lagX6x_l"),
+  data.frame(lagX6a_E[1], Name = "lagX6a_e"),
+  data.frame(lagX6a_L[1], Name = "lagX6a_l"),
+  data.frame(lagXx_E[1], Name = "lagXx_e"),
+  data.frame(lagXx_L[1], Name = "lagXx_l"),
+  data.frame(lagXa_E[1], Name = "lagXa_e"),
+  data.frame(lagXa_L[1], Name = "lagXa_l"),
+  data.frame(lagX5x_E[1], Name = "lagX5x_e"),
+  data.frame(lagX5x_L[1], Name = "lagX5x_l"),
+  data.frame(lagX5a_E[1], Name = "lagX5a_e"),
+  data.frame(lagX5a_L[1], Name = "lagX5a_l"),
+  data.frame(anaII15x_E[1], Name = "anaII15x_e"),
+  data.frame(anaII15x_L[1], Name = "anaII15x_l"),
+  data.frame(anaII15a_E[1], Name = "anaII15a_e"),
+  data.frame(anaII15a_L[1], Name = "anaII15a_l"),
+  data.frame(lateanaII2x_E[1], Name = "lateanaII2x_e"),
+  data.frame(lateanaII2x_L[1], Name = "lateanaII2x_l"),
+  data.frame(lateanaII2a_E[1], Name = "lateanaII2a_e"),
+  data.frame(lateanaII2a_L[1], Name = "lateanaII2a_l"),
+  data.frame(lateanaII3x_E[1], Name = "lateanaII3x_e"),
+  data.frame(lateanaII3x_L[1], Name = "lateanaII3x_l"),
+  data.frame(lateanaII3a_E[1], Name = "lateanaII3a_e"),
+  data.frame(lateanaII3a_L[1], Name = "lateanaII3a_l"),
+  data.frame(lateanaII1x_E[1], Name = "lateanaII1x_e"),
+  data.frame(lateanaII1x_L[1], Name = "lateanaII1x_l"),
+  data.frame(lateanaII1a_E[1], Name = "lateanaII1a_e"),
+  data.frame(lateanaII1a_L[1], Name = "lateanaII1a_l"),
+  data.frame(anaII1x_E[1], Name = "anaII1x_e"),
+  data.frame(anaII1x_L[1], Name = "anaII1x_l"),
+  data.frame(anaII1a_E[1], Name = "anaII1a_e"),
+  data.frame(anaII1a_L[1], Name = "anaII1a_l")
 )
 
 # Statistic analysis: collecting information for Anova test
 Anova_Results <- tibble()
-Names_List <- list("anaI_1_a", "anaI_2_a", 
-                   "metaII_1_a", "metaII_1_x", "metaII_2_a", "metaII_2_x",
-                   "lagX_6_a", "lagX_6_x", "lagX_a", "lagX_x", "lagX_9_a", "lagX_9_x", "lagX_5_a" ,"lagX_5_x",
-                   "anaII_15_a", "anaII_15_x", "anaII_1_a", "anaII_1_x",
-                   "lateanaII_2_a", "lateanaII_2_x", "lateanaII_3_a", "lateanaII_3_x", "lateanaII_1_a", "lateanaII_1_x"
+Names_List <- list("metaII1x_e", "metaII1x_l", "metaII1a_e", "metaII1a_l",
+                   "metaII2x_e", "metaII2x_l", "metaII2a_e", "metaII2a_l",
+                   "lagX6x_e", "lagX6x_l", "lagX6a_e", "lagX6a_l",
+                   "lagXx_e", "lagXx_l", "lagXa_e", "lagXa_l",
+                   "lagX5x_e", "lagX5x_l", "lagX5a_e", "lagX5a_l",
+                   "anaII15x_e", "anaII15x_l", "anaII15a_e", "anaII15a_l",
+                   "lateanaII2x_e", "lateanaII2x_l", "lateanaII2a_e", "lateanaII2a_l",
+                   "lateanaII3x_e", "lateanaII3x_l", "lateanaII3a_e", "lateanaII3a_l",
+                   "lateanaII1x_e", "lateanaII1x_l", "lateanaII1a_e", "lateanaII1a_l",
+                   "anaII1x_e", "anaII1x_l", "anaII1a_e", "anaII1a_l"
                    )
 Repetition <- as.numeric(length(Names_List) - 1)
 Counter <- 1
@@ -104,31 +193,31 @@ Counter <- 1
 for(i in 1:Repetition){
   k = 1
   j = 2
-
- while (j <= length(Names_List)) {
-   Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
-   Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
-   
-   Counter <- Counter + 1
-   j <- j + 1
- }
-    Names_List <- Names_List[-1]  
+  
+  while (j <= length(Names_List)) {
+    Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
+    Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
+    
+    Counter <- Counter + 1
+    j <- j + 1
+  }
+  Names_List <- Names_List[-1]  
 }
 
 i <- 1
 while (i <= nrow(Anova_Results)) {
-  if (Anova_Results[i, 1] >= 0.05) {
-    Anova_Results[i, 3] <- ". P >= 0.1"
+  if (Anova_Results[i, 1] > 0.05) {
+    Anova_Results[i, 3] <- "ns"
   } else if (Anova_Results[i, 1] >= 0.01 & Anova_Results[i, 1] < 0.05) {
     Anova_Results[i, 3] <- "* P >= 0.05"
   } else if (Anova_Results[i, 1] >= 0.001 & Anova_Results[i, 1] < 0.01) {
     Anova_Results[i, 3] <- "** P >= 0. 01"
-  } else if (Anova_Results[i, 1] >= 0.0001 & Anova_Results[i, 1] < 0.001) {
+  } else if (Anova_Results[i, 1] < 0.001) {
     Anova_Results[i, 3] <- "*** P >= 0.001"
   } else {
-    Anova_Results[i, 3] <- "ns"
+    Anova_Results[i, 3] <- "error"
   }
-
+  
   if (i == nrow(Anova_Results)) {
     names(Anova_Results)[1] <- "P value"
     names(Anova_Results)[2] <- "test"
@@ -137,5 +226,6 @@ while (i <= nrow(Anova_Results)) {
   i <- i + 1
 }
 
+
 # Save file as csv
-write.csv(Anova_Results, file = "Anova_Results_MeiosisII_kMTs.csv")
+write.csv(Anova_Results, file = "Anova_Results_MeiosisII_ALL.csv")

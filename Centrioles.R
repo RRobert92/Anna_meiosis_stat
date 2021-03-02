@@ -12,40 +12,23 @@ rm(list = ls())
 
 # Import all necessary resources 
 source("bin/Library.R") # Include all libraries
-source("bin/Load_xMTs_MI.R") # Include information which file to load
+source("bin/Load_centrioles.R") # Include information which file to load
 source("bin/Plot_Generator_Quasirandom.R") # Include plot generation function
 source("bin/Stat_Test.R") # Include Anova test function
 
-# Generate Violin plot of all data 
-P1 <- ggplot(metaI5x_E, aes("metaI5x_e", `Data`)) +
-  geom_quasirandom(size = 1, color = "red3") +
-  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
-  stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
-  theme_classic()
-P1 <- Plot_generate(P1, metaI5x_L, "metaI5x_l", "indianred1")
-
-P1 <- Plot_generate(P1, metaI7x_E, "metaI7x_e", "orange2")
-P1 <- Plot_generate(P1, metaI7x_L, "metaI7x_l", "wheat1")
-
-P1 <- Plot_generate(P1, metaIx_E, "metaIx_e", "gold1")
-P1 <- Plot_generate(P1, metaIx_L, "metaIx_l", "khaki1")
-
-print(P1)
 
 # Statistic analysis: data pre-processing
 ANOVA_Test <- rbind(
-  data.frame(metaI5x_E[1], Name = "metaI5x_e"),
-  data.frame(metaI5x_L[1], Name = "metaI5x_l"),
-  data.frame(metaI7x_E[1], Name = "metaI7x_e"),
-  data.frame(metaI7x_L[1], Name = "metaI7x_l"),
-  data.frame(metaIx_E[1], Name = "metaIx_e"),
-  data.frame(metaIx_L[1], Name = "metaIx_l") # There should not be a comma at the end
+  data.frame(metaI_centrioles[1], Name = "metaI_c"),
+  data.frame(anaI_centrioles[1], Name = "anaI_c"),
+  data.frame(metaII_centrioles[1], Name = "metaII_c"),
+  data.frame(anaII_centrioles[1], Name = "anaII_c"),
+  data.frame(lateanaII_centrioles[1], Name = "lateanaII_c")
    )
 
 # Statistic analysis: collecting information for Anova test
 Anova_Results <- tibble()
-Names_List <- list("metaI5x_e", "metaI7x_e", "metaIx_e", 
-                   "metaI5x_l", "metaI7x_l", "metaIx_l"
+Names_List <- list("metaI_c", "metaII_c", "anaI_c", "anaII_c", "lateanaII_c"
                    )
 Repetition <- as.numeric(length(Names_List) - 1)
 Counter <- 1
@@ -89,4 +72,4 @@ while (i <= nrow(Anova_Results)) {
 
 
 # Save file as csv
-write.csv(Anova_Results, file = "Anova_Results_MeiosisI_kMTs_X.csv")
+write.csv(Anova_Results, file = "Anova_Results_centrioles.csv")
