@@ -1,26 +1,25 @@
 ################################################################################
 # Module Statistic analysis for Meiosis data
 #
-# (c) 2022 Schwarz/Kiewisz
+# (c) 2020 Schwarz/Kiewisz
 # This code is licensed under GPL V3.0 license (see LICENSE.txt for details)
 #
-# Author: Anna Schwarz & Robert Kiewisz
-# Created: 2022-01-12
+# Author: Anna Schwarz & Robert Kiewisz 
+# Created: 2020-12-23
 ################################################################################
 
 rm(list = ls())
 
-# Import all necessary resources
+# Import all necessary resources 
 source("bin/Library.R") # Include all libraries
 source("bin/Load_sMTs_MII.R") # Include information which file to load
 source("bin/Plot_Generator_Quasirandom.R") # Include plot generation function
 source("bin/Stat_Test.R") # Include Anova test function
 
-# Generate Violin plot of all data
+# Generate Violin plot of all data 
 P1 <- ggplot(anaI_1_S, aes("anaI1_s", `Data`)) +
   geom_quasirandom(size = 1, color = "gray45") +
-  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) +
-  ylim(0, 60000) +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean, geom = "crossbar", width = 0.5) + ylim (0, 60000) +
   stat_summary(fun.data = "mean_sdl", fun.args = list(mult = 1), geom = "errorbar", color = "black", width = 0.2) +
   theme_classic()
 
@@ -63,39 +62,31 @@ ANOVA_Test <- rbind(
   data.frame(lateanaII2_S[1], Name = "lateanaII2_s"),
   data.frame(lateanaII3_S[1], Name = "lateanaII3_s"),
   data.frame(lateanaII1_S[1], Name = "lateanaII1_s"),
-  data.frame(anaII1_S[1], Name = "anaII1_s")
+  data.frame(anaII1_S[1], Name = "anaII1_s") # There should not be a comma at the end
 )
 
 # Statistic analysis: collecting information for Anova test
 Anova_Results <- tibble()
-Names_List <- list(
-  "anaI1_s", "anaI2_s", "metaII1_s", "metaII2_s", "lagX6_s", "lagX_s",
-  "lagX9_s", "lagX5_s", "anaII15_s", "lateanaII2_s", "lateanaII3_s",
-  "lateanaII1_s", "anaII1_s"
+Names_List <- list("anaI1_s", "anaI2_s", "metaII1_s", "metaII2_s", "lagX6_s", "lagX_s",
+                   "lagX9_s", "lagX5_s", "anaII15_s", "lateanaII2_s", "lateanaII3_s",
+                   "lateanaII1_s", "anaII1_s"
 )
-Repetition <- as.numeric(length(Names_List) - 1) # nolint
+Repetition <- as.numeric(length(Names_List) - 1)
 Counter <- 1
 
 # Statistic analysis: Anova test for all data set
-for (i in 1:Repetition) {
-  k <- 1
-  j <- 2
-
+for(i in 1:Repetition){
+  k = 1
+  j = 2
+  
   while (j <= length(Names_List)) {
-    Anova_Results[Counter, 1] <- Anova_test(
-      ANOVA_Test,
-      Names_List[[k]],
-      Names_List[[j]]
-    )
-    Anova_Results[Counter, 2] <- paste(Names_List[[k]],
-      "~", Names_List[[j]],
-      sep = ""
-    )
-
+    Anova_Results[Counter, 1] <- Anova_test(ANOVA_Test, Names_List[[k]], Names_List[[j]])
+    Anova_Results[Counter, 2] <- paste(Names_List[[k]], "~", Names_List[[j]], sep = "")
+    
     Counter <- Counter + 1
     j <- j + 1
   }
-  Names_List <- Names_List[-1]
+  Names_List <- Names_List[-1]  
 }
 
 i <- 1
@@ -111,7 +102,7 @@ while (i <= nrow(Anova_Results)) {
   } else {
     Anova_Results[i, 3] <- "error"
   }
-
+  
   if (i == nrow(Anova_Results)) {
     names(Anova_Results)[1] <- "P value"
     names(Anova_Results)[2] <- "test"
