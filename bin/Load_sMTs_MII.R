@@ -6,7 +6,7 @@ sMT_classification <- read_excel("Data/sMT_classification_MII.xls",
                                 col_names = FALSE
 )
 
-#Load data 
+#Load data
 assign(
   paste(sMT_classification[1, 1]),
   sMT_classification[2:nrow(sMT_classification), 1]
